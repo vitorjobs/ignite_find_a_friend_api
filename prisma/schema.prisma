@@ -8,43 +8,43 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model org {
-  id           Int           @id @default(autoincrement())
-  nome         String        @db.VarChar(100)
-  email        String        @unique @db.VarChar(100)
-  org_contato  org_contato[]
-  org_endereco org_endereco?
-  pet          pet[]
+model Org {
+  id       String @id @default(uuid())
+  cnpj     String @unique
+  nome     String
+  email    String @unique
+  contato  String
+  endereco String
+  // org_contato  Org_contato[]
+  // org_endereco Org_endereco[]
+  pet      Pet[]
 }
 
-model org_contato {
-  id       Int    @id @default(autoincrement())
-  org_id   Int
-  whatsapp String @db.VarChar(20)
-  org      org    @relation(fields: [org_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-}
+// model Org_contato {
+//   id       String @id @default(uuid())
+//   whatsapp String @unique
 
-model org_endereco {
-  id     Int    @id @default(autoincrement())
-  org_id Int    @unique
-  cidade String @db.VarChar(100)
-  org    org    @relation(fields: [org_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-}
+//   org    Org    @relation(fields: [org_id], references: [id])
+//   org_id String
+// }
 
-model pet {
-  id         Int     @id @default(autoincrement())
-  nome       String  @db.VarChar(100)
+// model Org_endereco {
+//   id     String @id @default(uuid())
+//   cidade String
+
+//   org    Org    @relation(fields: [org_id], references: [id])
+//   org_id String
+// }
+
+model Pet {
+  id         String  @id @default(uuid())
+  nome       String
   descricao  String?
-  idade      String? @db.VarChar(20)
-  energia    String? @db.VarChar(20)
-  porte      String? @db.VarChar(20)
+  idade      String?
+  energia    String?
+  porte      String?
   requisitos String?
-  cidade     String  @db.VarChar(100)
-  org_id     Int
-  org        org     @relation(fields: [org_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-}
-
-model test {
-  id   Int    @id @default(autoincrement())
-  nome String
+  cidade     String
+  org        Org     @relation(fields: [org_id], references: [id])
+  org_id     String
 }
