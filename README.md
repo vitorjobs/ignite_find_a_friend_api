@@ -2,11 +2,11 @@ Nesse desafio desenvolveremos uma API para a adoção de animais, a FindAFriend 
 
 ### Regras da aplicação
 
-- Deve ser possível cadastrar um pet (ONG)
+- [ ] Deve ser possível cadastrar um pet (ONG)
 - Deve ser possível listar todos os pets disponíveis para adoção em uma cidade (Cliente)
 - Deve ser possível filtrar pets por suas características (Cliente)
 - Deve ser possível visualizar detalhes de um pet para adoção (Cliente)
-- Deve ser possível se cadastrar como uma ORG (ONG)
+- [x] Deve ser possível se cadastrar como uma ORG (ONG)
 - Deve ser possível realizar login como uma ORG (ONG)
 
 ### Regras de negócio

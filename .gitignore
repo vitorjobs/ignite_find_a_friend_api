@@ -9,3 +9,9 @@ prisma/generated/
 
 # Docker files
 docker/volumes
+
+# Ignore build artifacts
+my-docs-site/
+
+#Routes
+src/http/healthcheck

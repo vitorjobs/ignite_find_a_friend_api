@@ -4,9 +4,13 @@ import fastify from "fastify";
 import { ZodError } from "zod";
 import fastifyCookie from '@fastify/cookie'
 import { setupMetrics } from "./prometheus/metrics";
+import { orgRoutes } from "./http/controllers/Org/routes";
+import { appRoutes } from "./http/healthcheck/routes";
 
 export const app = fastify()
 app.register(fastifyCookie)
+app.register(orgRoutes)
+app.register(appRoutes)
 setupMetrics(app);
 
 app.register(fastifyJwt, {
