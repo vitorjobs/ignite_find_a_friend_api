@@ -9,3 +9,9 @@ scrape_configs:
       - targets: ['192.168.100.109:3333'] # IP do servidor onde a aplicação está rodando
         labels:
           app: 'findAFriend' # Label para identificar a aplicação
+  
+  - job_name: 'cadvisor' # Job para monitorar containers Docker
+    static_configs:
+      - targets: ['192.168.100.109:8080'] # Endpoint do cAdvisor (pode ser alterado conforme o IP real do host)
+        labels:
+          service: 'docker-monitoring'
