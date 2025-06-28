@@ -3,11 +3,18 @@
   "version": "1.0.0",
   "description": "Desafio Módulo 03 (SOLID) curso Ignite da RocketSeat",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
     "prisma:generate": "npx prisma generate",
     "prisma:pull": "npx prisma generate && npx prisma db pull",
-    "prisma:migrate": "npx prisma migrate dev --create-only"
+    "prisma:migrate": "npx prisma migrate dev --create-only",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:unit": "vitest run --name unit",
+    "test:e2e": "vitest run --name e2e",
+    "test:coverage": "vitest run --coverage",
+    "test:ci": "vitest run --coverage --reporter=dot"
   },
   "author": "Vìtor Guedes",
   "license": "MIT",
@@ -42,6 +49,6 @@
     "typescript": "5.8.3",
     "typescript-eslint": "8.29.1",
     "vite-tsconfig-paths": "5.1.4",
-    "vitest": "3.1.1"
+    "vitest": "^3.1.1"
   }
 }
