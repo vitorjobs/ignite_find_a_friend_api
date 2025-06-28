@@ -11,7 +11,7 @@
     "prisma:migrate": "npx prisma migrate dev --create-only",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:unit": "vitest run --name unit",
+    "test:unit": "vitest run --dir src/use-cases",
     "test:e2e": "vitest run --name e2e",
     "test:coverage": "vitest run --coverage",
     "test:ci": "vitest run --coverage --reporter=dot"

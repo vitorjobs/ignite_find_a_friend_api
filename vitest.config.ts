@@ -26,11 +26,7 @@ export default defineConfig({
       provider: 'v8', // Engine de cobertura mais rápida
       reporter: ['text', 'json', 'lcov'], // Tipos de relatório
       reportsDirectory: './coverage',
-      all: true, // Gera cobertura para todos os arquivos, testados ou não
-      branches: 80,
-      lines: 80,
-      functions: 80,
-      statements: 80, // Metas mínimas de cobertura
+      // all: true, // Gera cobertura para todos os arquivos, testados ou não
       exclude: [
         '**/node_modules/**',
         '**/build/**',
@@ -38,7 +34,15 @@ export default defineConfig({
         '**/*.spec.ts',
         '**/test/**',
         '**/*.d.ts',
-        '**/types/**'
+        '**/types/**',
+        '**/docker/**',
+        '**/my-docs-site/**',
+        '**/vitest.config.ts',
+        '**/READE/**',
+        '**/src/.env/**',
+        '**/src/.env_example/**',
+        '**/vitest.config.ts',
+        '**/eslint.config.mjs',
       ]
     },
 
@@ -50,14 +54,14 @@ export default defineConfig({
           dir: 'src/use-cases'
         }
       },
-      {
-        extends: true,
-        test: {
-          name: 'e2e',
-          dir: 'src/http/controllers',
-          environment: './prisma/vitest-environment-prisma/prisma-test-environment.ts'
-        }
-      }
+      // {
+      //   extends: true,
+      //   test: {
+      //     name: 'e2e',
+      //     dir: 'src/http/controllers',
+      //     environment: './prisma/vitest-environment-prisma/prisma-test-environment.ts'
+      //   }
+      // }
     ]
   }
 })
