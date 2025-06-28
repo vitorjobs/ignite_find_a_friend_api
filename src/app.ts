@@ -6,10 +6,12 @@ import fastifyCookie from '@fastify/cookie'
 import { setupMetrics } from "./prometheus/metrics";
 import { orgRoutes } from "./http/controllers/Org/routes";
 import { appRoutes } from "./http/healthcheck/routes";
+import { petRoutes } from "./http/controllers/Pet/routes";
 
 export const app = fastify()
 app.register(fastifyCookie)
 app.register(orgRoutes)
+app.register(petRoutes)
 app.register(appRoutes)
 setupMetrics(app);
 
