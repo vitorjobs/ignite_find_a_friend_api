@@ -2,6 +2,7 @@ import { z } from "zod"
 import { FastifyRequest, FastifyReply } from "fastify"
 import { makeCreateOrgUseCase } from "../../../use-cases/org/factories/make-create-org-use-case"
 import { OrgAlreadyExistsError } from "../../../use-cases/org/error/org-already-exists"
+import { EmailAlreadyExistsError } from "../../../use-cases/org/error/org-email-exists"
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
@@ -36,7 +37,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     })
   } catch (err) {
 
-    if (err instanceof OrgAlreadyExistsError) {
+    if (err instanceof OrgAlreadyExistsError || err instanceof EmailAlreadyExistsError) {
       return reply.status(409).send({
         message: err.message,
       });
