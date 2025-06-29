@@ -9,42 +9,25 @@ datasource db {
 }
 
 model Org {
-  id       String @id @default(uuid())
-  cnpj     String @unique
-  nome     String
-  email    String @unique
-  contato  String
-  endereco String
-  // org_contato  Org_contato[]
-  // org_endereco Org_endereco[]
-  pet      Pet[]
+  id            String @id @default(uuid())
+  cnpj          String @unique
+  nome          String
+  email         String @unique
+  contato       String
+  endereco      String
+  password_hash String
+  pet           Pet[]
 }
 
-// model Org_contato {
-//   id       String @id @default(uuid())
-//   whatsapp String @unique
-
-//   org    Org    @relation(fields: [org_id], references: [id])
-//   org_id String
-// }
-
-// model Org_endereco {
-//   id     String @id @default(uuid())
-//   cidade String
-
-//   org    Org    @relation(fields: [org_id], references: [id])
-//   org_id String
-// }
-
 model Pet {
-  id         String  @id @default(uuid())
+  id         String @id @default(uuid())
   nome       String
-  descricao  String?
-  idade      String?
-  energia    String?
-  porte      String?
-  requisitos String?
+  descricao  String
+  idade      String
+  energia    String
+  porte      String
+  requisitos String
   cidade     String
-  org        Org     @relation(fields: [org_id], references: [id])
+  org        Org    @relation(fields: [org_id], references: [id])
   org_id     String
 }
