@@ -110,6 +110,7 @@ import { describe, expect, it, beforeEach } from "vitest";
 import { InMemoryOrgRepository } from "./in-memory/in-memory-respository";
 import { CreateOrgUseCase } from "../create-org";
 import { OrgAlreadyExistsError } from "../error/org-already-exists";
+import { hash } from "bcryptjs";
 
 let orgRepository: InMemoryOrgRepository; // Renomeado para consistência
 let sut: CreateOrgUseCase;
@@ -129,6 +130,7 @@ describe('Create Org Use Case', () => { // Renomeado para refletir o contexto da
       email: 'contact@orgtest.com.br', // Email mais representativo
       contato: '11999999999',
       endereco: 'Rua Teste, 123',
+      password_hash: await hash("123456", 6)
     };
 
     const { org } = await sut.execute(orgData);

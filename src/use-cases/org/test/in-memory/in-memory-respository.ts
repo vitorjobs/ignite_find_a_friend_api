@@ -13,6 +13,7 @@ export class InMemoryOrgRepository implements OrgRepository {
       email: data.email,
       contato: data.contato,
       endereco: data.endereco,
+      password_hash: data.password_hash,
     }
 
     this.items.push(org)

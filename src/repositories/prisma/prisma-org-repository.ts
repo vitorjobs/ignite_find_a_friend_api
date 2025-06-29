@@ -16,14 +16,16 @@ export class PrismaOrgRepository implements OrgRepository {
   // //   throw new Error("Method not implemented.");
   // // }
 
-  async create(data: { cnpj: string; nome: string; email: string; contato: string; endereco: string }) {
+  async create(data: { cnpj: string; nome: string; email: string; contato: string; endereco: string; password_hash: string }) {
     const org = await prisma.org.create({
       data: {
+        id: 'user-1',
         cnpj: data.cnpj,
         nome: data.nome,
         email: data.email,
         contato: data.contato,
         endereco: data.endereco,
+        password_hash: data.password_hash
       },
     });
     return org;
