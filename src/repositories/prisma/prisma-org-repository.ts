@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { prisma } from "../../lib/prisma";
 import { OrgRepository } from "../org-repository";
 // import { OrgRepository } from "../";
@@ -16,17 +17,9 @@ export class PrismaOrgRepository implements OrgRepository {
   // //   throw new Error("Method not implemented.");
   // // }
 
-  async create(data: { cnpj: string; nome: string; email: string; contato: string; endereco: string; password_hash: string }) {
+  async create(data: Prisma.OrgCreateInput) {
     const org = await prisma.org.create({
-      data: {
-        id: 'user-1',
-        cnpj: data.cnpj,
-        nome: data.nome,
-        email: data.email,
-        contato: data.contato,
-        endereco: data.endereco,
-        password_hash: data.password_hash
-      },
+      data,
     });
     return org;
   }

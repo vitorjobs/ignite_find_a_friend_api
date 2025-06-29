@@ -2,6 +2,7 @@
 import { Org } from "@prisma/client"
 import { OrgRepository } from "../../repositories/org-repository"
 import { OrgAlreadyExistsError } from "./error/org-already-exists"
+import { hash } from "bcryptjs"
 
 interface CreateOrgUseCaseRequest {
   cnpj: string
@@ -9,6 +10,7 @@ interface CreateOrgUseCaseRequest {
   email: string
   contato: string
   endereco: string
+  password: string
 }
 
 interface CreateGymUseCaseReponse {
@@ -24,21 +26,26 @@ export class CreateOrgUseCase {
     nome,
     email,
     contato,
-    endereco
+    endereco,
+    password
   }:
     CreateOrgUseCaseRequest): Promise<CreateGymUseCaseReponse> {
+
 
     const orgExists = await this.orgRepository.findByCnpj(cnpj)
     if (orgExists) {
       throw new OrgAlreadyExistsError()
     }
 
+    const password_hash = await hash(password, 6)
+
     const org = await this.orgRepository.create({
       cnpj,
       nome,
       email,
       contato,
-      endereco
+      endereco,
+      password_hash,
     })
 
     return {

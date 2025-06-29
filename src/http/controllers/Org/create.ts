@@ -10,6 +10,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     email: z.string().email("Invalid email format"),
     contato: z.string(),
     endereco: z.string(),
+    password: z.string().min(6)
 
   })
 
@@ -19,7 +20,9 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     nome,
     email,
     contato,
-    endereco } = registerBodySchema.parse(request.body)
+    endereco,
+    password
+  } = registerBodySchema.parse(request.body)
 
   try {
     const registerUseCase = makeCreateOrgUseCase()
@@ -28,7 +31,8 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       nome,
       email,
       contato,
-      endereco
+      endereco,
+      password
     })
   } catch (err) {
 
