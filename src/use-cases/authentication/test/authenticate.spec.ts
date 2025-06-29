@@ -15,6 +15,11 @@ describe("Authenticate Use Case", () => {
 
   it("should authenticate an organization with valid credentials", async () => {
 
+    // Descreva o teste em português
+    // Deve autenticar uma organização com credenciais válidas
+    // Arrange: Configura os dados necessários para o teste
+    // Act: Executa a ação que está sendo testada
+    // Assert: Verifica se o resultado é o esperado   
     await orgRepository.create({
       cnpj: '12345678901234',
       nome: 'Org Test',
@@ -24,6 +29,12 @@ describe("Authenticate Use Case", () => {
       password_hash: await hash("123456", 6)
     });
 
+    // Act: Executa o caso de uso de autenticação
+    // Assert: Verifica se o resultado é o esperado
+    // Verifica se o CNPJ retornado é do tipo string
+    // e se o CNPJ é igual ao que foi usado para criar a organização
+    // e se o CNPJ é igual ao que foi usado para criar a organização
+    // e se o CNPJ é igual ao que foi usado para criar a organização  
     const { org } = await sut.execute({
       cnpj: '12345678901234',
       password: ('123456')
