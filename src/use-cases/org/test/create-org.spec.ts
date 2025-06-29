@@ -110,7 +110,8 @@ import { describe, expect, it, beforeEach } from "vitest";
 import { InMemoryOrgRepository } from "./in-memory/in-memory-respository";
 import { CreateOrgUseCase } from "../create-org";
 import { OrgAlreadyExistsError } from "../error/org-already-exists";
-import { hash } from "bcryptjs";
+import { compare } from 'bcryptjs'
+import { EmailAlreadyExistsError } from "../error/org-email-exists";
 
 let orgRepository: InMemoryOrgRepository; // Renomeado para consistência
 let sut: CreateOrgUseCase;
@@ -130,18 +131,16 @@ describe('Create Org Use Case', () => { // Renomeado para refletir o contexto da
       email: 'contact@orgtest.com.br', // Email mais representativo
       contato: '11999999999',
       endereco: 'Rua Teste, 123',
-      password_hash: await hash("123456", 6)
+      password: '123456'
     };
 
     const { org } = await sut.execute(orgData);
 
-    // Asserts mais descritivos
-    expect(org).toBeDefined(); // Verifica se o objeto org foi criado
-    expect(org.id).toEqual(expect.any(String)); // Confirma que um ID foi gerado
-    expect(org.cnpj).toEqual(orgData.cnpj); // Verifica se os dados foram persistidos corretamente
+    expect(org).toBeDefined();
+    expect(org.id).toEqual(expect.any(String));
+    expect(org.cnpj).toEqual(orgData.cnpj);
     expect(org.nome).toEqual(orgData.nome);
   });
-
 
   it('should not be able to create an org with an existing CNPJ', async () => {
     const commonCnpj = '12345678901234';
@@ -153,6 +152,7 @@ describe('Create Org Use Case', () => { // Renomeado para refletir o contexto da
       email: 'first@org.com.br',
       contato: '11999999999',
       endereco: 'Rua Um, 123',
+      password: '123456'
     });
 
     // Tenta criar uma segunda organização com o mesmo CNPJ e espera o erro
@@ -163,7 +163,55 @@ describe('Create Org Use Case', () => { // Renomeado para refletir o contexto da
         email: 'second@org.com.br', // Email diferente para refletir uma "nova" organização
         contato: '11988888888',
         endereco: 'Rua Dois, 456',
+        password: '123456'
       })
     ).rejects.toBeInstanceOf(OrgAlreadyExistsError);
+  });
+
+  it('should not be able to create an org with an existing EMAIL', async () => {
+    const commonEmail = 'first@org.com.br';
+
+    // Cria a primeira organização
+    await sut.execute({
+      cnpj: '12345678901234',
+      nome: 'First Org',
+      email: commonEmail,
+      contato: '11999999999',
+      endereco: 'Rua Um, 123',
+      password: '123456'
+    });
+
+    // Tenta criar uma segunda organização com o mesmo CNPJ e espera o erro
+    await expect(() =>
+      sut.execute({
+        cnpj: '12345678901235', // CNPJ diferente para refletir uma "nova" organização
+        nome: 'Second Org',
+        email: commonEmail, // Email diferente para refletir uma "nova" organização
+        contato: '11988888888',
+        endereco: 'Rua Dois, 456',
+        password: '123456'
+      })
+    ).rejects.toBeInstanceOf(EmailAlreadyExistsError);
+  });
+
+  it('should hash user password upon create', async () => {
+    // Dados de teste definidos uma vez para clareza
+    const orgData = {
+      cnpj: '12345678901234',
+      nome: 'Org Test',
+      email: 'contact@orgtest.com.br', // Email mais representativo
+      contato: '11999999999',
+      endereco: 'Rua Teste, 123',
+      password: '123456'
+    };
+
+    const { org } = await sut.execute(orgData);
+
+    const isPassWordCorrectlyHashed = await compare(
+      '123456',
+      org.password_hash
+    )
+    expect(isPassWordCorrectlyHashed).toBe(true)
+
   });
 });
