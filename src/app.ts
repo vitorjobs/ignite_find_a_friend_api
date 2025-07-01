@@ -7,33 +7,10 @@ import { setupMetrics } from "./prometheus/metrics";
 import { orgRoutes } from "./http/controllers/Org/routes";
 import { appRoutes } from "./http/healthcheck/routes";
 import { petRoutes } from "./http/controllers/Pet/routes";
+import { authRoutes } from "./http/controllers/Authentication/routes";
 
 export const app = fastify()
-app.register(fastifyCookie)
-app.register(orgRoutes)
-app.register(petRoutes)
-app.register(appRoutes)
-setupMetrics(app);
-
 app.register(fastifyJwt, {
-  /**
-   * * @description	
-   * * Configuração do JWT para autenticação
-   * * e autorização na aplicação.
-   * * O segredo é armazenado em uma variável de ambiente
-   * * para maior segurança.
-   * * O cookie é configurado para armazenar o token de atualização		
-   * * * e tem uma duração de 10 minutos.
-   * * * @param {string} env.JWT_SECRET - O segredo usado para assinar o token JWT.
-   * * * @param {object} cookie - Configurações do cookie.
-   * * * @param {string} cookie.cookieName - Nome do cookie que armazenará o token de atualização.
-   * * * @param {boolean} cookie.signed - Indica se o cookie deve ser assinado.
-   * * * @param {object} sign - Configurações de assinatura do token JWT.
-   * * * @param {string} sign.expiresIn - Tempo de expiração do token JWT.
-   * *
-   * * @returns {object} - Retorna a configuração do JWT.
-   * * @throws {Error} - Lança um erro se o segredo do JWT não estiver definido.
-   */
   secret: env.JWT_SECRET,
   cookie: {
     cookieName: 'refreshToken',
@@ -43,6 +20,13 @@ app.register(fastifyJwt, {
     expiresIn: '10m',
   },
 })
+
+app.register(fastifyCookie)
+app.register(orgRoutes)
+app.register(petRoutes)
+app.register(appRoutes)
+app.register(authRoutes)
+setupMetrics(app);
 
 app.get('/about', () => {
   return {
@@ -59,7 +43,6 @@ app.get('/about', () => {
     },
   }
 })
-
 // FUNÇÃO GLOBAL PARA TARTAR ERROS NA APLICAÇÃO
 
 app.setErrorHandler((error, _request, reply) => {
