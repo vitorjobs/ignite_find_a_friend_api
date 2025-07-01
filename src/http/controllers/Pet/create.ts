@@ -13,10 +13,8 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     porte: z.string(),
     requisitos: z.string(),
     cidade: z.string(),
-    orgId: z.string()
-
   })
-  // Extrai dados do corpo da requisição e valida os campos usando o schema Zod
+
   const {
     nome,
     descricao,
@@ -25,7 +23,6 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     porte,
     requisitos,
     cidade,
-    orgId
 
   } = registerBodySchema.parse(request.body)
 
@@ -39,7 +36,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       porte,
       requisitos,
       cidade,
-      orgId: orgId
+      orgId: request.user.sub
 
     })
   } catch (err) {
