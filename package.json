@@ -14,7 +14,8 @@
     "test:unit": "vitest run --dir src/use-cases",
     "test:e2e": "vitest run --name e2e",
     "test:coverage": "vitest run --coverage",
-    "test:ci": "vitest run --coverage --reporter=dot"
+    "test:ci": "vitest run --coverage --reporter=dot",
+    "test:ui": "vitest --ui"
   },
   "author": "Vìtor Guedes",
   "license": "MIT",
@@ -38,7 +39,7 @@
     "@types/node": "22.14.0",
     "@types/supertest": "6.0.3",
     "@vitest/coverage-v8": "3.1.1",
-    "@vitest/ui": "3.1.1",
+    "@vitest/ui": "^3.1.1",
     "eslint": "9.24.0",
     "globals": "16.0.0",
     "prisma": "6.6.0",

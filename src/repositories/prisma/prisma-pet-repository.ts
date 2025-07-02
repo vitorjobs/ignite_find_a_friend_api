@@ -10,4 +10,21 @@ export class PrismaPetRepository implements PrismaPetRepository {
     return pet;
   }
 
+  async findByCity(cidade: string): Promise<Pet[]> {
+    const pets = await prisma.pet.findMany({
+      where: {
+        cidade,
+      },
+      include: {
+        org: {
+          select: {
+            nome: true,
+            contato: true
+          }
+        }
+      }
+    });
+    return pets;
+  }
+
 }

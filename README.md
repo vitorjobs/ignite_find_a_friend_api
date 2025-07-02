@@ -4,13 +4,13 @@ Nesse desafio desenvolveremos uma API para a adoção de animais, a FindAFriend 
 
 - [x] Deve ser possível se cadastrar como uma ORG (ONG)
 
-- [ ] Deve ser possível realizar login como uma ORG (ONG)
-  - [ ] Alterar banco de dados para receber senha
-  - [ ] Criar autenticação via  JWT
-  - [ ] Criar autenticação
-  
+- [x] Deve ser possível realizar login como uma ORG (ONG)
+  - [x] Alterar banco de dados para receber senha
+  - [x] Criar autenticação
+  - [x] Gerar JWT
+
 - [X] Deve ser possível cadastrar um pet (ONG) 
-  - [] Rota autenticada
+  - [x] Rota autenticada
   - [] Ajustar as campos que podem receber null na controller e no useCase
  
 - Deve ser possível listar todos os pets disponíveis para adoção em uma cidade (Cliente)
@@ -22,9 +22,8 @@ Nesse desafio desenvolveremos uma API para a adoção de animais, a FindAFriend 
 ### Regras de negócio
 
 - Para listar os pets, obrigatoriamente precisamos informar a cidade (Cliente)
-  - Requisito mínimo (Informar Cidade)
-- Uma ORG precisa ter um endereço e um número de WhatsApp (ONG)
-- Um pet deve estar ligado a uma ORG (ONG)
+- [x] Uma ORG precisa ter um endereço e um número de WhatsApp (ONG)
+- [x] Um pet deve estar ligado a uma ORG (ONG)
 - O usuário que quer adotar, entrará em contato com a ORG via WhatsApp (Cliente)
 - Todos os filtros, além da cidade, são opcionais (Cliente, exceto para listar pets)
 - Para uma ORG acessar a aplicação como admin, ela precisa estar logada (ONG)

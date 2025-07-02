@@ -2,6 +2,7 @@ import { Pet, Prisma, } from "@prisma/client";
 
 export interface PetRepository {
   create(data: Prisma.PetUncheckedCreateInput): Promise<Pet>;
+  findByCity(cidade: string): Promise<Pet[]>;
   // findById(id: string): Promise<Pet | null>;
   // findByOrgId(orgId: string): Promise<Pet[]>;
   // findByName(name: string): Promise<Pet | null>;
