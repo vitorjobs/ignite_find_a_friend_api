@@ -24,14 +24,14 @@ export class ListPetsByCityUseCase {
       throw new NoCityInformedError
     }
 
-    const pet = await this.petRepository.findByCity(cidade)
+    const pets = await this.petRepository.findByCity(cidade)
 
-    if (!pet || pet.length === 0 || pet === undefined || pet === null) {
+    if (!pets || pets.length === 0 || pets === undefined || pets === null) {
       throw new ListPetsByCityEmptyError
     }
 
     return {
-      pet
+      pet: pets
     }
   }
 }
