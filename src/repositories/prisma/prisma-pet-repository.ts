@@ -27,4 +27,34 @@ export class PrismaPetRepository implements PrismaPetRepository {
     return pets;
   }
 
+  async searchPets(params: {
+    cidade?: string;
+    nome?: string;
+    idade?: string;
+    energia?: string;
+    porte?: string;
+  }): Promise<Pet[]> {
+    const { cidade, nome, idade, energia, porte } = params;
+
+    const pets = await prisma.pet.findMany({
+      where: {
+        ...(cidade && { cidade }),
+        ...(nome && { nome: { contains: nome, mode: 'insensitive' } }),
+        ...(idade && { idade }),
+        ...(energia && { energia }),
+        ...(porte && { porte }),
+      },
+      include: {
+        org: {
+          select: {
+            nome: true,
+            contato: true
+          }
+        }
+      }
+    });
+
+    return pets;
+  }
+
 }

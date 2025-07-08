@@ -25,4 +25,24 @@ export class InMemoryPetRepository implements PetRepository {
   async findByCity(cidade: string): Promise<Pet[]> {
     return this.items.filter(pet => pet.cidade === cidade)
   }
+
+  async searchPets(params: {
+    cidade?: string;
+    nome?: string;
+    idade?: string;
+    energia?: string;
+    porte?: string;
+  }): Promise<Pet[]> {
+    const { cidade, nome, idade, energia, porte } = params;
+
+    return this.items.filter(pet => {
+      return (
+        (!cidade || pet.cidade === cidade) &&
+        (!nome || pet.nome.toLowerCase().includes(nome.toLowerCase())) &&
+        (!idade || pet.idade === idade) &&
+        (!energia || pet.energia === energia) &&
+        (!porte || pet.porte === porte)
+      );
+    });
+  }
 }

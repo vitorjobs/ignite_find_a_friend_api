@@ -2,6 +2,7 @@ import { describe, expect, it, beforeEach } from "vitest";
 import { InMemoryPetRepository } from "./in-memory/in-memory-respository";
 import { ListPetsByCityUseCase } from "../listPetsByCityUseCase";
 import { ListPetsByCityEmptyError } from "../error/list-pets-error";
+import { NoCityInformedError } from "../error/no-city-informed-error";
 
 let petRepository: InMemoryPetRepository;
 let sut: ListPetsByCityUseCase;
@@ -52,7 +53,7 @@ describe('List Pets By City Use Case', () => {
     }
 
     // Usa o use case para buscar pets por cidade
-    const pets = await sut.execute({ cidade: "" });
+    const pets = await sut.execute({ cidade: "Rio de Janeiro" });
 
     expect(pets).toBeDefined();
     // expect(pets.pet.length).toBe(2); // Espera 2 pets na cidade de São Paulo
@@ -60,12 +61,10 @@ describe('List Pets By City Use Case', () => {
   });
 
   it('should throw an error if no city is informed', async () => {
-    await expect(sut.execute({ cidade: "" })).rejects.toBeInstanceOf(ListPetsByCityEmptyError)
+    await expect(sut.execute({ cidade: "" })).rejects.toBeInstanceOf(NoCityInformedError)
   });
 
   it('should throw an error if no pets are found in the city', async () => {
     await expect(sut.execute({ cidade: "CidadeInexistente" })).rejects.toBeInstanceOf(ListPetsByCityEmptyError);
   });
-
-
 });
