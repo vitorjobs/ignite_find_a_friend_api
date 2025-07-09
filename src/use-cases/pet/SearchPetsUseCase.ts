@@ -8,10 +8,10 @@ import { NoCityInformedError } from './error/no-city-informed-error';
 // Note que 'cidade' é obrigatório aqui, conforme a regra de negócio.
 interface SearchPetsUseCaseRequest {
   cidade: string; // Obrigatório pela regra de negócio
-  nome?: string;
-  idade?: 'FILHOTE' | 'ADULTO' | 'IDOSO'; // Usar os ENUMs do Prisma, se aplicável
+  descricao?: string;
+  idade?: string // Usar os ENUMs do Prisma, se aplicável
   energia?: string; // Usar o tipo numérico se for uma escala
-  porte?: 'PEQUENO' | 'MEDIO' | 'GRANDE' | 'GIGANTE'; // Usar os ENUMs do Prisma, se aplicável
+  porte?: string; // Usar os ENUMs do Prisma, se aplicável
   // Adicione outros filtros que você tenha no seu schema.prisma, como nivelIndependencia, tipoAnimal, etc.
 }
 
@@ -25,7 +25,7 @@ export class SearchPetsUseCase {
 
   async execute({
     cidade,
-    nome,
+    descricao,
     idade,
     energia,
     porte,
@@ -37,7 +37,7 @@ export class SearchPetsUseCase {
 
     const pets = await this.petsRepository.searchPets({
       cidade,
-      nome,
+      descricao,
       idade,
       energia,
       porte,

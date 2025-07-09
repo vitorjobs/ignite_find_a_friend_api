@@ -6,6 +6,7 @@ export interface PetRepository {
   searchPets(params: {
     cidade: string;
     nome?: string;
+    descricao?: string;
     idade?: string;
     energia?: string;
     porte?: string;
