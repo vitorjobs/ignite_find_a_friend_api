@@ -21,3 +21,7 @@ coverage/
 
 # Ignore visual studio code settings
 .vscode/
+
+# Ignore build directories
+dist/
+build/
