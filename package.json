@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
+    "build": "tsup src --out-dir build",
     "prisma:generate": "npx prisma generate",
     "prisma:pull": "npx prisma generate && npx prisma db pull",
     "prisma:migrate": "npx prisma migrate dev --create-only",
