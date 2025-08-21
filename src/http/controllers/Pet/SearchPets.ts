@@ -43,6 +43,6 @@ export async function SearchPets(request: FastifyRequest, reply: FastifyReply) {
   return reply
     .status(200)
     .send(
-      pets
+      { pets }
     )
 }
