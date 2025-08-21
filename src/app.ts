@@ -1,4 +1,5 @@
 import fastifyJwt from "@fastify/jwt";
+import { log } from './infra/logger';
 import { env } from "./env";
 import fastify from "fastify";
 import { ZodError } from "zod";
@@ -47,15 +48,17 @@ app.get('/about', () => {
 
 app.setErrorHandler((error, _request, reply) => {
   if (error instanceof ZodError) {
+    log.info("Erro de validação de formato")
     return reply
       .status(400)
       .send({ message: "Validation error.", issues: error.format() })
   }
 
   if (env.NODE_ENV != "productions") {
-    console.log(error)
+    log.error(error)
   } else {
     // TODO FAZER LOGO COM FERRAMENTA DE LOG
+    log.error(error)
   }
   return reply.status(500).send({})
 })	
