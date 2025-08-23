@@ -25,3 +25,6 @@ coverage/
 # Ignore build directories
 dist/
 build/
+
+# Sonar
+.scannerwork/
