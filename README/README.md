@@ -48,7 +48,7 @@ Cria a ligação entre tabelas, apontando para a chave primária de outra tabela
 
 ## ✅ Validação de Dados com Zod
 
-Neste projeto, utilizamos a biblioteca **Zod** para validar os dados recebidos nas requisições HTTP.
+Neste projeto, utilizamos a biblioteca **Z  od** para validar os dados recebidos nas requisições HTTP.
 
 ### 🎯 O que a validação faz?
 
