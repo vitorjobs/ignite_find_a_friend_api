@@ -1,0 +1,31 @@
+# version: "31"
+
+services:
+  postgres:
+    # image: findafriend_postgrespg:latest
+    image: vitorguedespereira/findafriend_pg:latest
+    container_name: FAF_BD
+    restart: unless-stopped
+    networks:
+      FAF_API:
+        ipv4_address: 172.27.0.30
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRESQL_USERNAME: usuario_dump
+      POSTGRESQL_PASSWORD: senha_dump
+      POSTGRESQL_DATABASE: banco_dump
+    # volumes:
+    #   # Bind mount: pasta local -> pasta de dados do Postgres
+    #   - ./config/postgres:/var/lib/postgresql/data
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    entrypoint: ["/bin/bash", "-c", "chown -R 999:999 /var/lib/postgresql/data && exec docker-entrypoint.sh postgres"]
+
+networks:
+  FAF_API:
+    name: FAF_API  # 👈 Rede já existe (criada pelo primeiro compose)
+    external: true
+
+volumes:
+  postgres_data:   # 👈 definição do volume nomeado

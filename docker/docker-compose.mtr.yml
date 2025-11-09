@@ -1,0 +1,50 @@
+version: '3'
+services:
+  grafana:
+    # image: vitorguedespereira/grafana-lab:1.1
+    image: grafana/grafana:latest
+    container_name: FAF_GRAF
+    restart: unless-stopped
+    networks:
+      FAF_API:
+        ipv4_address: 172.27.0.10
+    ports:
+      - "3004:3000"
+    volumes:
+      - ./config/grafana/datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
+      - ./config/grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
+      - ./config/grafana/dashboards/:/etc/grafana/provisioning/dashboards/dashboards/
+    environment:
+      - GF_AUTH_BASIC_ENABLED=false
+      - GF_SECURITY_ALLOW_EMBEDDING=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=false
+      - GF_USERS_ALLOW_SIGN_UP=true
+      - GF_USERS_ALLOW_ORG_CREATE=true
+      - GF_FEATURE_TOGGLES_ENABLE=publicDashboards
+
+  prometheus:
+    image: prom/prometheus
+    container_name: FAF_PROM
+    restart: unless-stopped
+    networks:
+      FAF_API:
+        ipv4_address: 172.27.0.20
+    ports:
+      - "9094:9090"
+    volumes:
+      - ./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+
+networks:
+  FAF_API:
+    name: FAF_API
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.27.0.0/24
