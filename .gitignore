@@ -8,7 +8,7 @@ node_modules
 prisma/generated/
 
 # Docker files
-docker/volumes
+docker.old
 
 # Ignore build artifacts
 my-docs-site/
