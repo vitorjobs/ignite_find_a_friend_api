@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Org, Prisma } from "@prisma/client";
 import { prisma } from "../../lib/prisma";
 import { OrgRepository } from "../org-repository";
 // import { OrgRepository } from "../";
@@ -39,5 +39,10 @@ export class PrismaOrgRepository implements OrgRepository {
       },
     });
     return org;
+  }
+
+  async findAllOrgs(): Promise<Org[]> {
+    const orgs = await prisma.org.findMany();
+    return orgs;
   }
 }
