@@ -5,8 +5,7 @@ export default defineConfig({
   plugins: [tsconfigPaths()], // Suporte a aliases do tsconfig
 
   test: {
-    dir: 'src', // Diretório base para os testes
-
+    // dir: 'src', // Diretório base para os testes
     include: ['**/*.spec.ts'], // Padrão de arquivos de teste
     exclude: [
       '**/node_modules/**',
@@ -19,12 +18,21 @@ export default defineConfig({
 
     clearMocks: true, // Limpa mocks entre os testes
     isolate: true, // Isola cada arquivo de teste para evitar vazamento de estado
-    watch: false, // Desativa modo watch por padrão
+    // watch: false, // Desativa modo watch por padrão
     allowOnly: !process.env.CI, // Bloqueia uso de .only no CI
+
+    // Configuração específica para UI
+    // ui: true,
+    // // Configurações do UI
+    // browser: {
+    //   enabled: true,
+    //   name: 'chrome', // ou 'firefox', 'safari'
+    //   headless: false // para ver o browser em ação
+    // },
 
     coverage: {
       provider: 'v8', // Engine de cobertura mais rápida
-      reporter: ['text', 'json', 'lcov'], // Tipos de relatório
+      reporter: ['text', 'json', 'lcov', 'html'], // Tipos de relatório
       reportsDirectory: './coverage',
       // all: true, // Gera cobertura para todos os arquivos, testados ou não
       exclude: [
