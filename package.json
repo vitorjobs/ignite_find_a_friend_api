@@ -19,7 +19,11 @@
     "test:ci": "vitest run --coverage --reporter=dot",
     "test:ui": "vitest --ui",
     "sonar:ci": "export $(grep -v '^#' .env | xargs) && npx sonarqube-scanner -Dsonar.projectBaseDir=. -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_TOKEN -Dsonar.projectKey=$SONARQUBE_PROJECT_KEY",
-    "sonar": "npx sonarqube-scanner -Dsonar.projectBaseDir=."
+    "sonar": "npx sonarqube-scanner -Dsonar.projectBaseDir=.",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "docs:production": "vitepress dev docs/.vitepress/dist"
   },
   "author": "Vìtor Guedes",
   "license": "MIT",
@@ -56,6 +60,7 @@
     "typescript-eslint": "8.29.1",
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "^3.1.1",
-    "@vitest/ui": "3.1.1"
+    "@vitest/ui": "3.1.1",
+    "vitepress": "^2.0.0-alpha.12"
   }
 }

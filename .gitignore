@@ -1,5 +1,6 @@
 # Ignore Node.js dependencies
 node_modules
+package-lock.json
 
 # Keep environment variables out of version control
 .env
@@ -28,3 +29,7 @@ build/
 
 # Sonar
 .scannerwork/
+
+# Ignore node_modules do projeto de documentação
+docs/node_modules
+docs/package-lock.json
