@@ -37,17 +37,17 @@ Ajuste a variável **DATABASE_URL** conforme a instância do PostgreSQL que voc�
 
 
 ```bash [local]
-  `postgresql://usuario:senha@localhost:5432/findafriend`
+  postgresql://usuario:senha@localhost:5432/findafriend
 
 ```
 
 ```bash [docker]
-  `postgresql://postgres:postgres@localhost:5433/findafriend`
+  postgresql://postgres:postgres@localhost:5433/findafriend
 
 ```
 
 ```bash [remoto]
-  `postgresql://usuario:senha@servidor:5432/findafriend`
+  postgresql://usuario:senha@servidor:5432/findafriend
 
 ```
 
@@ -69,7 +69,7 @@ yarn install
 ### Executar Migrations do Prisma
 
 ::: warning ⚠️ NECESSÁRIO APENAS PARA BANCO DE DADOS **LOCAL** OU **REMOTO**
-Se você estiver usando o banco de dados via **Container** (ex: Docker), **pule esta etapa**. O contêiner disposto no arquivo *docker-compose.bd.yml* já contém a estrutura inicial do banco e das tabelas.
+Se você estiver usando o banco de dados via **container**, **pule esta etapa**. O contêiner disposto no arquivo **docker-compose.bd.yml**, disponível no artigo **instalação com Docker** já contém a estrutura inicial do banco e das tabelas.
 :::
 
 Execute os seguintes comandos para gerar o cliente do Prisma e aplicar as migrations, criando as tabelas no banco de dados:
@@ -105,7 +105,6 @@ npm start
 
 ## 6. Validação da Instalação
 
-Acesse no navegador: http://localhost:3333  
 Health check: http://localhost:3333/health
 
 ## 🚨 Solução de Problemas Comuns
