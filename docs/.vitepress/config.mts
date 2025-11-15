@@ -199,7 +199,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Projeto Find a Friend",
   description: "Desenvolvido na trilha de NodeJS da Rocketseat.",
-  base: '/repo/',
+  base: '/ignite_find_a_friend_api/',
   ignoreDeadLinks: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -312,7 +312,7 @@ export default defineConfig({
     },
 
     lastUpdated: {
-      text: 'Atualizado em',
+      text: 'Atualizado em novembro de 2025',
       formatOptions: {
         dateStyle: 'full',
         timeStyle: 'medium'
@@ -320,8 +320,15 @@ export default defineConfig({
     }
   },
 
+  // Adicione esta configuração
+  vite: {
+    server: {
+      host: true,
+      port: 5173
+    }
+  },
   // Configurações gerais do VitePress
-  lastUpdated: true,
+  // lastUpdated: true,
   cleanUrls: true,
 
   head: [
