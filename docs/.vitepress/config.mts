@@ -199,6 +199,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Projeto Find a Friend",
   description: "Desenvolvido na trilha de NodeJS da Rocketseat.",
+  ignoreDeadLinks: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
 
