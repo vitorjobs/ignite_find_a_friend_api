@@ -8,20 +8,17 @@ O código-fonte completo está disponível no GitHub:
 
 ## Estrutura do Projeto
 
-`` 
+```bash
 find-a-friend-api/
 ├── src/ # Código fonte
 ├── docker/ # Configurações Docker
 ├── docs/ # Documentação
 ├── tests/ # Testes automatizados
 └── docker-compose.*.yml # Orquestração
-
-``
+```
 
 ## Branches e Versionamento
 
 - `main` - Branch de produção
 - `develop` - Branch de desenvolvimento
 - `feature/*` - Branches de funcionalidades
-
-[Voltar para Início →](../index.md)

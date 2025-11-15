@@ -18,7 +18,8 @@ Crie o arquivo `.env` na raiz do projeto baseado no exemplo abaixo adaptado para
 Mantendo a variável **DATABASE_URL** apontando para o container do PostgreSQL.
 :::
 
-```env
+```bash
+# .env
 NODE_ENV=dev
 PORT=3333
 HOST=0.0.0.0
@@ -46,6 +47,7 @@ docker network create FAF_API
 ```
 ### b. Subir Serviços 
 Use esta abordagem para ou iniciar todos os serviços.
+
 
 > [!WARNING] Importante
 > Sempre inicie o serviço de Banco de Dados antes dos outros serviços. 

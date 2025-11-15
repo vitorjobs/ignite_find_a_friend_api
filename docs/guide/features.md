@@ -21,5 +21,3 @@
 - Métricas de performance em tempo real
 - Dashboards com Grafana
 - Health checks da aplicação
-
-[Próximo: Repositório →](./repository.md)

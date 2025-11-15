@@ -11,5 +11,3 @@ Esta é uma API RESTful para conectar tutores e pets, desenvolvida em Node.js co
 - **Monitoramento**: Prometheus e Grafana
 - **Containerização**: Docker e Docker Compose
 - **Análise de Código**: SonarQube
-
-<!-- [Próximo: Tecnologias →](./technologies.md) -->
