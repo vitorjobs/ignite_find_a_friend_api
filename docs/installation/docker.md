@@ -39,7 +39,7 @@ Você pode subir os serviços separadamente ou todos de uma vez.
 A rede é necessária para que os containers possam se comunicar usando IPs estáticos.
 
 ```bash
-docker network create FAF_API
+docker network create --driver bridge --subnet 172.27.0.0/24 FAF_API
 ```
 ### b. Subir Serviços 
 Use esta abordagem para iniciar os serviços docker.
