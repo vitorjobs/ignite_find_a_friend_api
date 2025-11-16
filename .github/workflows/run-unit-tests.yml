@@ -2,7 +2,7 @@ name: Run Unit Tests
 
 on:
   push:
-    branches: [c_on]
+    branches: [ci_cd]
 
 jobs:
   run-unit-tests:
