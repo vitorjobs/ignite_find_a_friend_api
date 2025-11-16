@@ -1,0 +1,777 @@
+{
+	"info": {
+		"_postman_id": "33682763-4437-44fc-8e2f-f8251650c511",
+		"name": "Find a Friend API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11939439"
+	},
+	"item": [
+		{
+			"name": "SYSTEM Copy",
+			"item": [
+				{
+					"name": "Health",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.have.all.keys('Version', 'Status', 'Timestamp', 'Environment', 'Database', 'Server');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Database type must be a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.Database).to.exist;",
+									"    pm.expect(responseData.Database.type).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Server host must be a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.Server).to.exist;",
+									"    pm.expect(responseData.Server.host).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Server port is a positive integer\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.Server).to.exist;",
+									"    pm.expect(responseData.Server.port).to.be.a('number').and.to.be.above(0, \"Port should be a positive integer\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Vítor Guedes\",\n    \"email\":\"vitor01@guedes.com\",\n    \"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.100.109:3333/health",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"100",
+								"109"
+							],
+							"port": "3333",
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "About",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.have.all.keys('Projeto', 'Tecnologias', 'Documentação', 'Dependencies');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Dependencies object contains all expected keys\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.Dependencies).to.include.keys('fastify', 'prisma', 'bcryptjs', 'env', 'supertest', 'vitest');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Each dependency value is a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    const dependencies = responseData.Dependencies;",
+									"",
+									"    pm.expect(dependencies).to.be.an('object');",
+									"",
+									"    Object.keys(dependencies).forEach(function(key) {",
+									"        pm.expect(dependencies[key]).to.be.a('string').and.to.have.lengthOf.at.least(1, `${key} should not be empty`);",
+									"    });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Vítor Guedes\",\n    \"email\":\"vitor01@guedes.com\",\n    \"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/about",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"about"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TimesTamp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response content type is text/plain\", function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('text/plain');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response body is a valid integer\", function () {",
+									"    const responseBody = pm.response.text();",
+									"    pm.expect(parseInt(responseBody)).to.be.a('number').and.to.satisfy(Number.isInteger);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response body is not negative\", function () {",
+									"    const responseData = pm.response.text();",
+									"    pm.expect(parseInt(responseData)).to.be.at.least(0, \"Response body should not be negative\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Vítor Guedes\",\n    \"email\":\"vitor01@guedes.com\",\n    \"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/timestamp",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"timestamp"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Org",
+			"item": [
+				{
+					"name": "Create Org",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Pré-request Script",
+									"function gerarCNPJ() {",
+									"    function randomizar(n) {",
+									"        return Math.floor(Math.random() * n);",
+									"    }",
+									"    ",
+									"    function mod(dividendo, divisor) {",
+									"        return Math.round(dividendo - (Math.floor(dividendo / divisor) * divisor));",
+									"    }",
+									"",
+									"    const n = 9;",
+									"    let n1 = randomizar(n);",
+									"    let n2 = randomizar(n);",
+									"    let n3 = randomizar(n);",
+									"    let n4 = randomizar(n);",
+									"    let n5 = randomizar(n);",
+									"    let n6 = randomizar(n);",
+									"    let n7 = randomizar(n);",
+									"    let n8 = randomizar(n);",
+									"    let n9 = 0; // 0001",
+									"    let n10 = 0; // 0001",
+									"    let n11 = 0; // 0001",
+									"    let n12 = 1; // 0001",
+									"",
+									"    let d1 = n12 * 2 + n11 * 3 + n10 * 4 + n9 * 5 + n8 * 6 + n7 * 7 + n6 * 8 + n5 * 9 + n4 * 2 + n3 * 3 + n2 * 4 + n1 * 5;",
+									"    d1 = 11 - (mod(d1, 11));",
+									"    if (d1 >= 10) d1 = 0;",
+									"",
+									"    let d2 = d1 * 2 + n12 * 3 + n11 * 4 + n10 * 5 + n9 * 6 + n8 * 7 + n7 * 8 + n6 * 9 + n5 * 2 + n4 * 3 + n3 * 4 + n2 * 5 + n1 * 6;",
+									"    d2 = 11 - (mod(d2, 11));",
+									"    if (d2 >= 10) d2 = 0;",
+									"",
+									"    const cnpj = '' + n1 + n2 + n3 + n4 + n5 + n6 + n7 + n8 + n9 + n10 + n11 + n12 + d1 + d2;",
+									"    ",
+									"    // Formatar como CNPJ: XX.XXX.XXX/XXXX-XX",
+									"    return cnpj.replace(/(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})/, \"$1.$2.$3/$4-$5\");",
+									"}",
+									"",
+									"// Armazenar na variável de coleção",
+									"pm.collectionVariables.set(\"randomCnpj\", gerarCNPJ());",
+									"",
+									"",
+									"// *********************************************************",
+									"",
+									"// Pré-request Script - Telefone BR",
+									"function gerarTelefoneBR() {",
+									"    const ddd = ['11', '21', '31', '41', '51', '61', '71', '81', '91', '12', '22'];",
+									"    const randomDDD = ddd[Math.floor(Math.random() * ddd.length)];",
+									"    const numero = Math.floor(100000000 + Math.random() * 900000000).toString().substring(0, 8);",
+									"    return `(${randomDDD}) 9${numero.substring(0, 4)}-${numero.substring(4)}`;",
+									"}",
+									"",
+									"pm.collectionVariables.set(\"randomContact\", gerarTelefoneBR());",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n    \"cnpj\": \"{{randomCnpj}}\",\n    \"password\": \"Zx8Cv7Bnn\",\n    // \"nome\": \"{{$randomCompanyName}}\",\n    \"nome\": \"teste docker commit\",\n    \"email\": \"{{$randomEmail}}\",\n    \"contato\": \"{{randomContact}}\",\n    \"endereco\": \"{{$randomStreetAddress}}\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/org",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"org"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Na aba Tests da requisição de autenticação",
+									"const response = pm.response.json(); // Parseia o JSON da resposta",
+									"",
+									"if (response.token) {",
+									"    // Remove aspas se existirem (solução defensiva)",
+									"    const authToken = response.token.replace(/^\"(.*)\"$/, '$1');",
+									"    ",
+									"    // Armazena na variável da collection",
+									"    pm.collectionVariables.set(\"authToken\", authToken);",
+									"    ",
+									"    console.log(\"Token gravado na variável de coleção:\", authToken);",
+									"    console.log(\"Variáveis atuais:\", pm.collectionVariables.toObject());",
+									"} else {",
+									"    console.error(\"Token não encontrado na resposta:\", response);",
+									"}",
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the required field - token\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData).to.have.property('token').that.is.a('string').and.is.not.empty;",
+									"});",
+									"",
+									"",
+									"pm.test(\"The token must be a non-empty string\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.token).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Token should not be empty\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('application/json');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cnpj\": \"84.541.842/0001-40\",\n    \"password\": \"Zx8Cv7Bnn\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Ongs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response content type is application/json\", function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response is an array and contains at least one organization object\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+									"    pm.expect(responseData[0]).to.be.an('object');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate the organization object fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+									"",
+									"    responseData.forEach(org => {",
+									"        pm.expect(org).to.be.an('object');",
+									"        pm.expect(org).to.have.all.keys('id', 'cnpj', 'nome', 'email', 'contato', 'endereco', 'password_hash');",
+									"        ",
+									"        pm.expect(org.id).to.be.a('string');",
+									"        pm.expect(org.cnpj).to.be.a('string');",
+									"        pm.expect(org.nome).to.be.a('string');",
+									"        pm.expect(org.email).to.be.a('string').and.to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/);",
+									"        pm.expect(org.contato).to.be.a('string');",
+									"        pm.expect(org.endereco).to.be.a('string');",
+									"        pm.expect(org.password_hash).to.be.a('string');",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Email is in a valid format\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+									"    responseData.forEach(org => {",
+									"        pm.expect(org.email).to.exist.and.to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/, \"Email format is invalid\");",
+									"    });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/org",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"org"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pet",
+			"item": [
+				{
+					"name": "Create Pet",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Pré-script para gerar dados dinâmicos de animais",
+									"pm.environment.set(\"animal_nome\", \"Mel\");",
+									"pm.environment.set(\"animal_descricao\", \"Gata dócil e sociável\");",
+									"pm.environment.set(\"animal_idade\", \"3\");",
+									"pm.environment.set(\"animal_energia\", \"Média\");",
+									"pm.environment.set(\"animal_porte\", \"Pequeno\");",
+									"pm.environment.set(\"animal_cidade\", \"Belo Horizonte\");",
+									"pm.environment.set(\"animal_requisitos\", \"Gosta de companhia\");",
+									"",
+									"// Gerar dados dinâmicos alternativos (exemplo de variação)",
+									"const nomes = [\"Mel\", \"Luna\", \"Thor\", \"Bella\", \"Max\", \"Nina\"];",
+									"const especies = [\"Gato\", \"Cachorro\", \"Coelho\", \"Pássaro\"];",
+									"const descricoes = [",
+									"    \"Animal dócil e carinhoso\",",
+									"    \"Muito brincalhão e energético\", ",
+									"    \"Calmo e tranquilo\",",
+									"    \"Sociável e amigável\"",
+									"];",
+									"const cidades = [\"Belo Horizonte\", \"São Paulo\", \"Rio de Janeiro\", \"Curitiba\"];",
+									"",
+									"// Selecionar valores aleatórios",
+									"const nomeAleatorio = nomes[Math.floor(Math.random() * nomes.length)];",
+									"const especieAleatoria = especies[Math.floor(Math.random() * especies.length)];",
+									"const descricaoAleatoria = descricoes[Math.floor(Math.random() * descricoes.length)];",
+									"const cidadeAleatoria = cidades[Math.floor(Math.random() * cidades.length)];",
+									"",
+									"// Definir variáveis dinâmicas",
+									"pm.environment.set(\"animal_nome_dinamico\", nomeAleatorio);",
+									"pm.environment.set(\"animal_especie_dinamico\", especieAleatoria);",
+									"pm.environment.set(\"animal_descricao_dinamico\", descricaoAleatoria);",
+									"pm.environment.set(\"animal_idade_dinamico\", (Math.floor(Math.random() * 10) + 1).toString());",
+									"pm.environment.set(\"animal_energia_dinamico\", [\"Baixa\", \"Média\", \"Alta\"][Math.floor(Math.random() * 3)]);",
+									"pm.environment.set(\"animal_porte_dinamico\", [\"Pequeno\", \"Médio\", \"Grande\"][Math.floor(Math.random() * 3)]);",
+									"pm.environment.set(\"animal_cidade_dinamico\", cidadeAleatoria);",
+									"pm.environment.set(\"animal_requisitos_dinamico\", \"Necessita de atenção e carinho\");",
+									"",
+									"// Gerar o objeto JSON completo",
+									"const animalData = {",
+									"    \"nome\": pm.environment.get(\"animal_nome_dinamico\"),",
+									"    \"descricao\": pm.environment.get(\"animal_descricao_dinamico\"),",
+									"    \"idade\": pm.environment.get(\"animal_idade_dinamico\"),",
+									"    \"energia\": pm.environment.get(\"animal_energia_dinamico\"),",
+									"    \"porte\": pm.environment.get(\"animal_porte_dinamico\"),",
+									"    \"cidade\": pm.environment.get(\"animal_cidade_dinamico\"),",
+									"    \"requisitos\": pm.environment.get(\"animal_requisitos_dinamico\")",
+									"};",
+									"",
+									"// Salvar o objeto completo como variável de ambiente",
+									"pm.environment.set(\"animal_data_completo\", JSON.stringify(animalData));",
+									"",
+									"// Log para verificação",
+									"console.log(\"Dados do animal gerados:\");",
+									"console.log(JSON.stringify(animalData, null, 2));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"{{animal_nome_dinamico}}\",\n    \"descricao\": \"{{animal_descricao_dinamico}}\",\n    \"idade\": \"{{animal_idade_dinamico}}\",\n    \"energia\": \"{{animal_energia_dinamico}}\",\n    \"porte\": \"{{animal_porte_dinamico}}\",\n    \"cidade\": \"{{animal_cidade_dinamico}}\",\n    \"requisitos\": \"{{animal_requisitos_dinamico}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/pet/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"pet",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Pet By City",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response is an array with at least one element\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Validate each object in the array has the required fields\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+									"",
+									"    responseData.forEach(function(item) {",
+									"        pm.expect(item).to.have.all.keys('id', 'nome', 'descricao', 'idade', 'energia', 'porte', 'requisitos', 'cidade', 'org_id', 'org');",
+									"        pm.expect(item.org).to.have.all.keys('nome', 'contato');",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"The 'org' object contains required fields 'nome' and 'contato'\", function () {",
+									"    const responseData = pm.response.json();",
+									"",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+									"    ",
+									"    responseData.forEach(function(item) {",
+									"        pm.expect(item.org).to.be.an('object').that.includes.all.keys('nome', 'contato');",
+									"        pm.expect(item.org.nome).to.be.a('string').that.is.not.empty;",
+									"        pm.expect(item.org.contato).to.be.a('string').that.is.not.empty;",
+									"    });",
+									"});",
+									"",
+									"",
+									"pm.test(\"Id is a non-empty string and idade is a non-negative integer\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+									"",
+									"    responseData.forEach(pet => {",
+									"        pm.expect(pet.id).to.exist.and.to.be.a('string').and.to.have.lengthOf.at.least(1, \"Id should not be empty\");",
+									"        pm.expect(pet.idade).to.exist.and.to.be.a('number').and.to.be.at.least(0, \"Idade should be a non-negative integer\");",
+									"    });",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cidade\": \"Belo Horizonte\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/pet/list-by-city",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"pet",
+								"list-by-city"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Pet By City",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.expect(pm.response.code).to.equal(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response has the correct Content-Type header\", function () {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response body is an object\", function () {",
+									"    const responseData = pm.response.json();",
+									"    pm.expect(responseData).to.be.an('object');",
+									"});",
+									"",
+									"",
+									"pm.test(\"Pets array is present in the response\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.pets).to.exist.and.to.be.an('array');",
+									"});",
+									"",
+									"",
+									"pm.test(\"The pets array must be empty when no pets are found\", function () {",
+									"    const responseData = pm.response.json();",
+									"    ",
+									"    pm.expect(responseData).to.be.an('object');",
+									"    pm.expect(responseData.pets).to.be.an('array').that.is.empty;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cidade\": \"Belo Horizonte\",\n  \"porte\": \"Grande\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/pet/search-by-city",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"pet",
+								"search-by-city"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "authToken",
+			"value": ""
+		},
+		{
+			"key": "randomCnpj",
+			"value": ""
+		},
+		{
+			"key": "randomContact",
+			"value": ""
+		}
+	]
+}
