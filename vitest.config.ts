@@ -4,8 +4,12 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 export default defineConfig({
   plugins: [tsconfigPaths()], // Suporte a aliases do tsconfig
 
+  server: {
+    host: '0.0.0.0',  // Importante para aceitar conexões externas
+    port: 51205,
+  },
+
   test: {
-    // dir: 'src', // Diretório base para os testes
     include: ['**/*.spec.ts'], // Padrão de arquivos de teste
     exclude: [
       '**/node_modules/**',
@@ -22,13 +26,12 @@ export default defineConfig({
     allowOnly: !process.env.CI, // Bloqueia uso de .only no CI
 
     // Configuração específica para UI
-    // ui: true,
-    // // Configurações do UI
-    // browser: {
-    //   enabled: true,
-    //   name: 'chrome', // ou 'firefox', 'safari'
-    //   headless: false // para ver o browser em ação
-    // },
+    ui: true,
+
+    // Configuração do servidor UI na porta 51024
+    api: {
+      port: 51024,
+    },
 
     coverage: {
       provider: 'v8', // Engine de cobertura mais rápida
@@ -68,7 +71,6 @@ export default defineConfig({
           name: 'e2e',
           dir: 'src/http/controllers',
           environment: './prisma/vitest-environment-prisma/prisma-test-environment.ts'
-          // environment: './prisma/vitest-environment-prisma/prisma-test-environment.ts'
         }
       }
     ]
