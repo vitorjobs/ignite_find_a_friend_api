@@ -27,7 +27,6 @@ HOST=0.0.0.0
 
 # Configuração do PostgreSQL
 DATABASE_URL="postgresql://usuario_dump:senha_dump@172.27.0.30:5432/banco_dump?schema=public
-
 ```
 
 ---
@@ -98,7 +97,7 @@ docker logs FAF_PROM -f
 
 | Serviço    |                      URL (host) | Porta (host) | IP (host)      | IP (container:port) | Descrição                   |
 | ---------- | ------------------------------: | -----------: | :------------- | :-----------------: | --------------------------- |
-| Aplicação  |           http://localhost:3333 |         3333 | localhost      |   172.27.0.3:3333   | API Find a Friend           |
+| Aplicação  |    http://localhost:3333/health |         3333 | localhost      |   172.27.0.3:3333   | API Find a Friend           |
 | Grafana    |           http://localhost:3004 |         3004 | localhost      |  172.27.0.10:3000   | Dashboards de monitoramento |
 | Prometheus |           http://localhost:9094 |         9094 | localhost      |  172.27.0.20:9090   | Coleta de métricas          |
 | PostgreSQL | http://localhost:5433 (host UI) |  5433 / 5432 | localhost:5433 |  172.27.0.30:5432   | Banco de dados              |
@@ -123,7 +122,7 @@ docker logs FAF_PROM -f
 
 Acesse os endereços da tabela acima para verificar se os serviços estão funcionando corretamente:
 
-- **Aplicação**: http://localhost:3333
+- **Aplicação**: http://localhost:3333/health
 - **Grafana**: http://localhost:3004
 - **Prometheus**: http://localhost:9094
 
@@ -137,15 +136,15 @@ Importe o arquivo `endpoints.json` no Postman, disponível no diretório `docs/p
 ### a. Parar todos os serviços criados pelo Docker Compose
 
 ```bash
-docker-compose -f docker/docker-compose.bd.yml down
-docker-compose -f docker/docker-compose.mtr.yml down
-docker-compose -f docker/docker-compose.app.yml down
+docker compose -f docker/docker-compose.bd.yml down
+docker compose -f docker/docker-compose.mtr.yml down
+docker compose -f docker/docker-compose.app.yml down
 ```
 
 ### b. Rebuild da Aplicação
 
 ```bash
-docker-compose -f docker/docker-compose.app.yml build --no-cache
+docker compose -f docker/docker-compose.app.yml build --no-cache
 ```
 
 ### c. Limpar Volumes (⚠️ CUIDADO!)
