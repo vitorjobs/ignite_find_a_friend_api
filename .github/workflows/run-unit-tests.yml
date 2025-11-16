@@ -19,4 +19,9 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run test:unit
+      # - run: npm run test:unit
+      - name: Run Unit Tests with Environment Variables 🧪
+        run: npm run test:unit
+        # 🔑 Adicione a variável de ambiente necessária aqui
+        env:
+          JWT_SECRET: ${{secrets.JWT_SECRET}}
