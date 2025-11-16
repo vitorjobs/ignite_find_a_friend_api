@@ -1,49 +1,44 @@
-# services:
-#   app:
-#     build:
-#       context: ..  # 👈 Isso aponta para o diretório pai (onde está o package.json)
-#       dockerfile: docker/Dockerfile  # 👈 Caminho para o Dockerfile
-#     container_name: FAF_APP
-#     restart: unless-stopped
-#     networks:
-#       FAF_API:
-#         ipv4_address: 172.27.0.3
-#     ports:
-#       - "3333:3333"
-#     volumes:
-#       - ../:/usr/src/app  # 👈 Volume também aponta para o diretório pai
-#       - /usr/src/app/node_modules  # Evita sobrescrever node_modules
-#     environment:
-#       - DATABASE_URL="postgresql://usuario_dump:senha_dump@172.27.0.30:5432/banco_dump?schema=public"
-
-# networks:
-#   FAF_API:
-#     name: FAF_API
-#     external: true
-
-# volumes:
-#   app_data:
-
-
-
 services:
   app:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    container_name: FAF_APP
-    restart: unless-stopped
-    networks:
-      FAF_API:
-        ipv4_address: 172.27.0.3
+    container_name: FAF_API
+    
+    # 1. COMANDO PRINCIPAL: Sobrescreve o CMD do Dockerfile e executa apenas os testes UI.
+    command: >
+      /bin/bash -c "
+        # 1. Executa o build (deve ser rápido e terminar)
+        npm run build && 
+        # 2. Inicia o Vitest UI em background (&) 
+        #    Isso libera o shell para o próximo comando.
+        npm run test:ui & 
+        # 3. Inicia a Aplicação em foreground. 
+        #    Este é o processo principal que mantém o container vivo.
+        npm run start       
+      "
+
+    # 2. PORTA: Expõe apenas a porta necessária para a interface do Vitest.
     ports:
-      - "3333:3333"
+      - "3333:3333" 
+      - "51205:51205" 
+      - "51204:51204"
+      
+    # 3. VOLUMES: Mapeia o código para que o Vitest possa rodar em watch mode e ver as mudanças.
     volumes:
       - ../:/usr/src/app
       - /usr/src/app/node_modules
+      
+    # 4. REDE/ENV: Mantém a rede e a variável de ambiente do banco de dados (necessário para testes de integração).
+    networks:
+      FAF_API:
+        # Sem IP fixo, mas conectado à mesma rede para comunicação (ex: com o banco de dados)
+        ipv4_address: 172.27.0.40
+        
     environment:
       - DATABASE_URL=postgresql://usuario_dump:senha_dump@172.27.0.30:5432/banco_dump?schema=public
-      - NODE_ENV=productions
+      - NODE_ENV=test
+      
     develop:
       watch:
         - action: sync

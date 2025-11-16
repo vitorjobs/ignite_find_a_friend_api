@@ -1,4 +1,4 @@
-version: '3'
+# version: '3'
 services:
   grafana:
     # image: vitorguedespereira/grafana-lab:1.1
@@ -41,10 +41,16 @@ services:
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.console.templates=/usr/share/prometheus/consoles'
 
+# networks:
+#   FAF_API:
+#     name: FAF_API
+#     driver: bridge
+#     ipam:
+#       config:
+#         - subnet: 172.27.0.0/24
+
+
 networks:
   FAF_API:
-    name: FAF_API
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.27.0.0/24
+    name: FAF_API  # 👈 Rede já existe
+    external: true        

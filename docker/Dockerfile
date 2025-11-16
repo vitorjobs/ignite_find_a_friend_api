@@ -40,11 +40,30 @@
 
 
 
+# FROM node:20-bullseye
+
+# WORKDIR /usr/src/app
+
+# COPY package.json package-lock.json ./
+
+# RUN npm i
+
+# RUN npm run build
+
+# COPY . .
+
+# EXPOSE 3333
+
+# CMD ["npm", "run", "start"]
+
+
+
 FROM node:20-bullseye
 
 WORKDIR /usr/src/app
 
-COPY package.json package-lock.json ./
+# Copia os arquivos de configuração críticos para a instalação e build
+COPY package.json package-lock.json ./ vitest.config.ts ./
 
 RUN npm i
 
@@ -52,6 +71,10 @@ RUN npm run build
 
 COPY . .
 
+# Portas da Aplicação
 EXPOSE 3333
+# Nova Porta para o Vitest UI
+EXPOSE 51204
+EXPOSE 51205
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start:dev"]
