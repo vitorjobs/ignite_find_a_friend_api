@@ -17,7 +17,7 @@
     "test:e2e": "vitest run --dir src/http/controllers",
     "test:coverage": "vitest run --coverage",
     "test:ci": "vitest run --coverage --reporter=dot",
-    "test:ui": "vitest --ui",
+    "test:ui": "vitest --ui --watch",
     "sonar:ci": "export $(grep -v '^#' .env | xargs) && npx sonarqube-scanner -Dsonar.projectBaseDir=. -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_TOKEN -Dsonar.projectKey=$SONARQUBE_PROJECT_KEY",
     "sonar": "npx sonarqube-scanner -Dsonar.projectBaseDir=.",
     "docs:dev": "vitepress dev docs",
