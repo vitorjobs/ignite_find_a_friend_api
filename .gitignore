@@ -15,7 +15,7 @@ docker.old
 my-docs-site/
 
 #Routes
-src/http/healthcheck
+# src/http/healthcheck
 
 # Ignore test coverage reports
 coverage/

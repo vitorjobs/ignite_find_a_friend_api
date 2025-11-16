@@ -10,6 +10,7 @@ export default defineConfig({
   },
 
   test: {
+    dir: 'src',
     include: ['**/*.spec.ts'], // Padrão de arquivos de teste
     exclude: [
       '**/node_modules/**',
@@ -26,7 +27,7 @@ export default defineConfig({
     allowOnly: !process.env.CI, // Bloqueia uso de .only no CI
 
     // Configuração específica para UI
-    ui: true,
+    // ui: true,
 
     // Configuração do servidor UI na porta 51024
     api: {
