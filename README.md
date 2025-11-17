@@ -243,13 +243,13 @@ Para entender o fluxo de autenticação e exemplos:
 
 ---
 
-## 📝 Scripts Disponíveis
+<!-- ## 📝 Scripts Disponíveis
 
 Consulte a documentação para lista completa de scripts e como utilizá-los:
 
 📖 **[Documentação de Setup](https://vitorjobs.github.io/ignite_find_a_friend_api/installation/local.html)**
 
----
+--- -->
 
 ## 🏗️ Arquitetura
 
@@ -269,7 +269,6 @@ Para mais detalhes sobre a arquitetura e estrutura do projeto:
 
 ## 🐛 Status & CI/CD
 
-- ![Unit Tests](https://github.com/seu-usuario/03_FindaFriendAPI/workflows/Run%20Unit%20Tests/badge.svg)
 - Testes executados automaticamente na branch `ci_cd`
 - Workflow configurado em: `.github/workflows/run-unit-tests.yml` e `.github/workflows/run-e2e-tests.yml`
 
@@ -278,7 +277,7 @@ Para mais detalhes sobre a arquitetura e estrutura do projeto:
 
 ## 📄 Licença
 
-MIT © 2025 - [Vìtor Guedes](https://github.com/vitorjobs)
+MIT © 2025 - [Vítor Guedes](https://github.com/vitorjobs)
 
 ---
 
