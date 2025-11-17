@@ -232,18 +232,18 @@ export default defineConfig({
           { text: 'Pré-requisitos', link: '/installation/requirements' },
           { text: 'Instalação Local', link: '/installation/local' },
           { text: 'Instalação com Docker', link: '/installation/docker' },
-          { text: 'Banco de Dados', link: '/installation/database' }
+          // { text: 'Banco de Dados', link: '/installation/database' }
         ]
       },
-      {
-        text: '🔧 Desenvolvimento',
-        collapsed: false,
-        items: [
-          { text: 'Testes', link: '/development/testing' },
-          { text: 'Bibliotecas', link: '/development/libraries' },
-          { text: 'Próximos Passos', link: '/development/next-steps' }
-        ]
-      },
+      // {
+      //   text: '🔧 Desenvolvimento',
+      //   collapsed: false,
+      //   items: [
+      //     { text: 'Testes', link: '/development/testing' },
+      //     { text: 'Bibliotecas', link: '/development/libraries' },
+      //     { text: 'Próximos Passos', link: '/development/next-steps' }
+      //   ]
+      // },
       {
         text: '🚀 API',
         collapsed: false,
@@ -252,40 +252,40 @@ export default defineConfig({
           { text: 'Documentação de Monitoramento', link: '/api/monitor' }
         ]
       },
-      {
-        text: '📊 Banco de Dados',
-        collapsed: true,
-        items: [
-          { text: 'PostgreSQL', link: '/database/postgres' },
-          { text: 'Relacionamentos', link: '/database/relationships' },
-          { text: 'Prisma ORM', link: '/database/prisma' }
-        ]
-      },
-      {
-        text: '🛠️ Ferramentas',
-        collapsed: true,
-        items: [
-          { text: 'Docker', link: '/tools/docker' },
-          { text: 'Monitoramento', link: '/tools/monitoring' },
-          { text: 'SonarQube', link: '/tools/sonarqube' }
-        ]
-      },
-      {
-        text: '🎯 Roadmap',
-        collapsed: true,
-        items: [
-          { text: 'Próximos Passos', link: '/roadmap/next-steps' },
-          { text: 'Funcionalidades Futuras', link: '/roadmap/future-features' }
-        ]
-      },
-      {
-        text: '❓ Exemplos',
-        collapsed: true,
-        items: [
-          { text: 'Exemplos Markdown', link: '/examples/markdown' },
-          { text: 'Exemplos API', link: '/examples/api' }
-        ]
-      }
+      // {
+      //   text: '📊 Banco de Dados',
+      //   collapsed: true,
+      //   items: [
+      //     { text: 'PostgreSQL', link: '/database/postgres' },
+      //     { text: 'Relacionamentos', link: '/database/relationships' },
+      //     { text: 'Prisma ORM', link: '/database/prisma' }
+      //   ]
+      // },
+      // {
+      //   text: '🛠️ Ferramentas',
+      //   collapsed: true,
+      //   items: [
+      //     { text: 'Docker', link: '/tools/docker' },
+      //     { text: 'Monitoramento', link: '/tools/monitoring' },
+      //     { text: 'SonarQube', link: '/tools/sonarqube' }
+      //   ]
+      // },
+      // {
+      //   text: '🎯 Roadmap',
+      //   collapsed: true,
+      //   items: [
+      //     { text: 'Próximos Passos', link: '/roadmap/next-steps' },
+      //     { text: 'Funcionalidades Futuras', link: '/roadmap/future-features' }
+      //   ]
+      // },
+      // {
+      //   text: '❓ Exemplos',
+      //   collapsed: true,
+      //   items: [
+      //     { text: 'Exemplos Markdown', link: '/examples/markdown' },
+      //     { text: 'Exemplos API', link: '/examples/api' }
+      //   ]
+      // }
     ],
 
     // socialLinks: [

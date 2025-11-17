@@ -26,13 +26,12 @@ O sistema de monitoramento da **Find a Friend API** fornece observabilidade comp
 
 ### Componentes principais:
 
-| Componente                                                            | Função                                | Porta |
-| --------------------------------------------------------------------- | ------------------------------------- | ----- |
-| **API Find a Friend**                                                 | Aplicação principal                   | 3333  |
-| **Prometheus**                                                        | Coleta e armazena métricas            | 9090  |
-| **Grafana**                                                           | Visualização de métricas e dashboards | 3000  |
-| **cAdvisor**                                                          | Monitoramento de containers Docker    | 8080  |
-| --------------------------------------------------------------------- |
+| Componente            | Função                                | Porta |
+| --------------------- | ------------------------------------- | ----- |
+| **API Find a Friend** | Aplicação principal                   | 3333  |
+| **Prometheus**        | Coleta e armazena métricas            | 9090  |
+| **Grafana**           | Visualização de métricas e dashboards | 3000  |
+| **cAdvisor**          | Monitoramento de containers Docker    | 8080  |
 
 ---
 

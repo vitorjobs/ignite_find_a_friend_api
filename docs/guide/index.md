@@ -17,5 +17,5 @@ API RESTful desenvolvida em Node.js com TypeScript para gerenciamento de tutores
 ## 🔧 Desenvolvimento
 
 - [Testes](/development/testing.md)
-- [Bibliotecas Utilizadas](/development/libraries.md)
-- [Próximos Passos](/development/next-steps.md)
+<!-- - [Bibliotecas Utilizadas](/development/libraries.md)
+- [Próximos Passos](/development/next-steps.md) -->

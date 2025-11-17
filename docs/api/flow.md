@@ -3,45 +3,9 @@
 
 Documentação detalhada de todas as rotas e recursos da **Find a Friend API** - Desafio SOLID do curso Ignite da RocketSeat.
 
-## Índice
-
-- [🐾 Find a Friend API - Documentação Completa](#-find-a-friend-api---documentação-completa)
-  - [Índice](#índice)
-    - [Health](#health)
-    - [About](#about)
-    - [Timestamp](#timestamp)
-  - [ORG (Organizações)](#org-organizações)
-    - [Create Org](#create-org)
-    - [Authenticate](#authenticate)
-    - [List Ongs](#list-ongs)
-  - [PET (Animais)](#pet-animais)
-    - [Create Pet](#create-pet)
-    - [List Pet By City](#list-pet-by-city)
-    - [Search Pet By City](#search-pet-by-city)
-  - [📥 Importar Collection no Postman](#-importar-collection-no-postman)
-    - [Como importar a collection:](#como-importar-a-collection)
-      - [Método 1: Importar arquivo JSON](#método-1-importar-arquivo-json)
-      - [Método 2: Importar da URL](#método-2-importar-da-url)
-    - [O que está incluído na collection:](#o-que-está-incluído-na-collection)
-    - [Usando a collection após importação:](#usando-a-collection-após-importação)
-    - [Dicas importantes:](#dicas-importantes)
-    - [Arquivo da collection:](#arquivo-da-collection)
-  - [🔐 Autenticação](#-autenticação)
-    - [Fluxo de Autenticação](#fluxo-de-autenticação)
-    - [Como autenticar:](#como-autenticar)
-    - [Exemplo de fluxo:](#exemplo-de-fluxo)
-  - [📊 Status Codes](#-status-codes)
-  - [🚀 Exemplo de Fluxo Completo](#-exemplo-de-fluxo-completo)
-  - [📝 Notas Importantes](#-notas-importantes)
-    - [Postman Collection](#postman-collection)
-    - [Validações](#validações)
-    - [Segurança](#segurança)
-  - [🔗 Links Úteis](#-links-úteis)
-
 ---
 
-
-### Health
+## Health
 
 Verifica o status de saúde da aplicação e retorna informações do servidor.
 
@@ -81,7 +45,7 @@ curl -X GET http://localhost:3333/health
 
 ---
 
-### About
+## About
 
 Retorna informações sobre o projeto, tecnologias utilizadas e dependências principais.
 
@@ -127,7 +91,7 @@ curl -X GET http://localhost:3333/about
 
 ---
 
-### Timestamp
+## Timestamp
 
 Retorna o timestamp atual do servidor em milissegundos.
 
