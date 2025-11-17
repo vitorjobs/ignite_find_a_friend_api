@@ -4,7 +4,7 @@ Documentação completa sobre o sistema de monitoramento da **Find a Friend API*
 
 ---
 
-## 📋 Índice
+<!-- ## 📋 Índice
 
 - [Visão Geral](#-visão-geral)
 - [Arquitetura de Monitoramento](#-arquitetura-de-monitoramento)
@@ -18,7 +18,7 @@ Documentação completa sobre o sistema de monitoramento da **Find a Friend API*
 - [Alertas e Thresholds](#-alertas-e-thresholds)
 - [Troubleshooting](#-troubleshooting)
 
----
+--- -->
 
 ## 🎯 Visão Geral
 
@@ -39,29 +39,29 @@ O sistema de monitoramento da **Find a Friend API** fornece observabilidade comp
 
 ```bash
 ┌─────────────────────────────────────────────────────────────┐
-│                   Find a Friend API                          │
-│  (Expõe métricas via /metrics - Prometheus client)           │
+│                   Find a Friend API                         │
+│  (Expõe métricas via /metrics - Prometheus client)          │
 └──────────────────────┬──────────────────────────────────────┘
                        │ (Scrape a cada 15s)
                        ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    Prometheus                                │
+│                    Prometheus                               │
 │  - Coleta métricas (TSDB - Time Series Database)            │
 │  - Armazena dados por 15 dias (default)                     │
-│  - Avalia alertas                                            │
+│  - Avalia alertas                                           │
 └──────────────────────┬──────────────────────────────────────┘
                        │ (Query PromQL)
                        ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                     Grafana                                  │
-│  - Consulta Prometheus                                       │
-│  - Renderiza dashboards                                      │
-│  - Envia alertas                                             │
+│                     Grafana                                 │
+│  - Consulta Prometheus                                      │
+│  - Renderiza dashboards                                     │
+│  - Envia alertas                                            │
 └─────────────────────────────────────────────────────────────┘
-                       │
-        ┌──────────────┼──────────────┐
-        ▼              ▼              ▼
-   Dashboard 1   Dashboard 2    Alertas
+                                 │
+                  ┌──────────────┼──────────────┐
+                  ▼              ▼              ▼
+            Dashboard 1   Dashboard 2    Alertas
 ```
 
 ---
