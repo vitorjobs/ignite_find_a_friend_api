@@ -248,7 +248,8 @@ export default defineConfig({
         text: '🚀 API',
         collapsed: false,
         items: [
-          { text: 'Fluxo de Funcionamento', link: '/api/flow' }
+          { text: 'Fluxo de Funcionamento', link: '/api/flow' },
+          { text: 'Documentação de Monitoramento', link: '/api/monitor' }
         ]
       },
       {
