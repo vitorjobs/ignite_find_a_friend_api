@@ -26,12 +26,13 @@ O sistema de monitoramento da **Find a Friend API** fornece observabilidade comp
 
 ### Componentes principais:
 
-| Componente            | Função                                | Porta |
-| --------------------- | ------------------------------------- | ----- |
-| **Prometheus**        | Coleta e armazena métricas            | 9090  |
-| **Grafana**           | Visualização de métricas e dashboards | 3000  |
-| **cAdvisor**          | Monitoramento de containers Docker    | 8080  |
-| **API Find a Friend** | Aplicação principal                   | 3333  |
+| Componente                                                            | Função                                | Porta |
+| --------------------------------------------------------------------- | ------------------------------------- | ----- |
+| **API Find a Friend**                                                 | Aplicação principal                   | 3333  |
+| **Prometheus**                                                        | Coleta e armazena métricas            | 9090  |
+| **Grafana**                                                           | Visualização de métricas e dashboards | 3000  |
+| **cAdvisor**                                                          | Monitoramento de containers Docker    | 8080  |
+| --------------------------------------------------------------------- |
 
 ---
 
@@ -39,29 +40,30 @@ O sistema de monitoramento da **Find a Friend API** fornece observabilidade comp
 
 ```bash
 ┌─────────────────────────────────────────────────────────────┐
-│                   Find a Friend API                         │
+│                      Find a Friend API                      │
 │  (Expõe métricas via /metrics - Prometheus client)          │
-└──────────────────────┬──────────────────────────────────────┘
-                       │ (Scrape a cada 15s)
-                       ▼
+└──────────────────────────┬──────────────────────────────────┘
+                           │ 
+                           ▼
+                  (Scrape a cada 15s)
 ┌─────────────────────────────────────────────────────────────┐
-│                    Prometheus                               │
+│                        Prometheus                           │
 │  - Coleta métricas (TSDB - Time Series Database)            │
 │  - Armazena dados por 15 dias (default)                     │
-│  - Avalia alertas                                           │
-└──────────────────────┬──────────────────────────────────────┘
-                       │ (Query PromQL)
-                       ▼
+└──────────────────────────┬──────────────────────────────────┘
+                           │ 
+                           ▼
+                    (Query PromQL)
+
 ┌─────────────────────────────────────────────────────────────┐
 │                     Grafana                                 │
 │  - Consulta Prometheus                                      │
 │  - Renderiza dashboards                                     │
-│  - Envia alertas                                            │
 └─────────────────────────────────────────────────────────────┘
-                                 │
-                  ┌──────────────┼──────────────┐
-                  ▼              ▼              ▼
-            Dashboard 1   Dashboard 2    Alertas
+                             │
+              ┌──────────────┼──────────────┐
+              ▼                             ▼
+          Dashboard 1                      Dashboard 2   
 ```
 
 ---
